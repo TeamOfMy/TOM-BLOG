@@ -10,5 +10,10 @@ class MedalController extends BaseController
         return $this->render('Admin/Medal/index');
 
     }
+    public function medalUpload()
+    {
+        return $this->render('Admin/Medal/medal_upload');
+
+    }
 
 }
