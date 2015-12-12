@@ -9,3 +9,4 @@ if (!defined('BASEDIR')) {
 $app->get('/admin', ['as' => 'task_index', 'uses' => 'App\Controller\Admin\IndexController@index']);
 $app->get('/admin/post', ['as' => 'task_index', 'uses' => 'App\Controller\Admin\IndexController@index']);
 $app->get('/admin/medal', ['as' => 'task_index', 'uses' => 'App\Controller\Admin\MedalController@index']);
+$app->get('/admin/medal_upload', ['as' => 'task_index', 'uses' => 'App\Controller\Admin\MedalController@medalUpload']);

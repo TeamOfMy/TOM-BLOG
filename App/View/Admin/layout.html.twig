@@ -22,6 +22,7 @@
 
     <link href="{{ STATIC_PATH }}css/animate.css" rel="stylesheet">
     <link href="{{ STATIC_PATH }}css/style.css?v=2.2.0" rel="stylesheet">
+    {% block head %}{% endblock %}
 
 </head>
 <body>
@@ -37,6 +38,8 @@
 
 <!-- 绝对底部构建 -->
 {% include 'Admin/footer.html.twig' %}
+
+{% block javascript %}{% endblock %}
 
 </body>
 </html>
