@@ -1,0 +1,19 @@
+<div id="page" class="clearfix" style="float:right">
+   {% set url =  path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params') ) %}
+    <ul>
+        {# {% if pagination.page>1 %} #}
+            <li><a href="{{  path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'page':1})) }}"><<</a></li>
+            <li><a href="{{  path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'page':pagination.page==1 ? 1 :pagination.page-1})) }}"><</a></li>
+        {# {% endif %} #}
+        {#display p numbers only from p-4 to p+4 but don't go <1 or >pages_count#}
+        {% for p in range(max(pagination.page-4, 1),
+        min(pagination.page+4, pagination.pages)) %}
+            <li><a{% if p == pagination.page %} class="active"{% endif %}
+                    href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'page': p})) }}">{{ p }}</a></li>
+        {% endfor %}
+        {# {% if pagination.page<pagination.pages %} #}
+            <li><a href="{{  path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'page':pagination.page<pagination.pages ? pagination.page+1 : pagination.page})) }}">></a></li>
+            <li><a href="{{  path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge({'page':pagination.pages})) }}">>></a></li>
+        {# {% endif %} #}
+    </ul>
+</div>

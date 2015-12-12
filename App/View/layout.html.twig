@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'meta.html.twig' %}
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <script type="text/javascript" src="{{ STATIC_PATH }}/dist/v2015112401/ued.import.js?v=1.0"></script>
+
+    <script type="text/javascript">
+        app.importFile("commonCss", "css");
+    </script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% block contenthead %}{% endblock %}
+
+<!-- fix 头部 -->
+{% include 'header.html.twig' %}
+
+<div class="inx-wrapper">
+{% block content %}{% endblock %}
+</div>
+
+<!-- 绝对底部构建 -->
+{% include 'footer.html.twig' %}
+
+<!-- 隐藏窗口 -->
+{% block divhide %}{% endblock %}
+<script  type="text/javascript" >
+    //头像图片服务器
+    window.IMG_PATH = "{{ IMG_PATH }}";
+
+    //大图cdn服务器
+    window.PIC_PATH = "{{ PICTURE_CDN_PATH }}";
+
+    //视频端path
+    window.V_PATH = "http://" + location.hostname.replace(/www./,'v.');
+
+    //load lib
+    app.libImportJs();
+    app.importFile("commonJs", "js");
+</script>
+{% block javascript %}{% endblock %}
+
+{% include 'online-consultation.html.twig' %}
+{% include 'google-analytics.html.twig' %}
+
+</body>
+</html>

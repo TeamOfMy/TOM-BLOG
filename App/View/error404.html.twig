@@ -1,0 +1,63 @@
+{% extends "layout.html.twig" %}
+{% block title %}找不到页面{% endblock %}
+
+{% block head %}
+<style type="text/css">
+    .error-box{
+        background-image: url(/public/css/i/error.jpg);
+        width: 873px;
+        height: 331px;
+        margin: 50px auto 100px auto;
+    }
+
+    .error-content{
+        float: right;
+        width: 506px;
+        margin-top: 85px;
+    }
+
+    .error-content h1{
+        line-height: 1.3em;
+        font-size: 23px;
+        color: #333;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .error-content p,
+    .error-content a{
+        display: block;
+        font-size: 14px;
+        color: #666;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="inx-wrapper">
+    <div class="inx-section">
+        <div class="container">
+            <div class="error-box clearfix">
+                <div class="error-content">
+                    <h1>抱歉，你访问的页面地址有误，或者该页面不存在</h1>
+                    <p>点击以下链接继续浏览网站</p>
+                    <a onclick="if(window.history){window.history.back();}else{location.href = document.referrer==''?'/':document.referrer;}">> 返回上一页面</a>
+                    <a href="/">> 返回网站首页</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        app.importFile("pageCommonJs", "js");
+    </script>
+{% endblock %}

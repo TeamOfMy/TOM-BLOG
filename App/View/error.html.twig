@@ -1,0 +1,49 @@
+{% extends "layout.html.twig" %}
+{% block title %}钻石充值{% endblock %}
+{% block head %}
+    <style>
+        .error-bg{
+            float: left;
+            background-image: url({{ PICTURE_CDN_PATH }}/css/i/error.jpg);
+            width: 300px;
+            height: 331px;
+            margin: 0px 50px 0px 0px;
+        }
+        .error-content{
+            float: left;
+            float: left;
+            width: 650px;
+            line-height: 45px;
+        }
+
+        .error-content p{
+            font-size: 16px;;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="inx-section">
+        <div class="doc-wrapper">
+            <div class="doc container">
+                <div class="doc-title">友情提示</div>
+                <div class="doc-content">
+                    <div class="error-bg"></div>
+                    <div class="error-content">
+                        {% autoescape false %}
+                        <h1>{{ title }}</h1>
+                        {% endautoescape %}
+                        <p>{{ msg }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        app.importFile("pageCommonJs", "js");
+    </script>
+{% endblock %}
