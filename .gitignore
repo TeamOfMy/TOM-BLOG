@@ -1,3 +1,4 @@
 .idea*
 Cache/View/*
+Cache/Logs/*
 .gitignore
