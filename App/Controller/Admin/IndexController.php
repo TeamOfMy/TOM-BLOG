@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 
+use App\Models\Users;
+
 class IndexController extends BaseController
 {
 

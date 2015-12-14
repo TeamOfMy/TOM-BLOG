@@ -877,24 +877,24 @@ class Application extends Container
     protected function registerDatabaseBindings()
     {
         // TODO 临时做了一个兼容原来配置的转换 以后要统一的
-        $db = array(
-            'fetch' => \PDO::FETCH_CLASS,
-            'default' => 'mysql',
-        );
-        $default = array(
-            'driver' => 'mysql',
-            'host' => $this->config['config.database_host'],
-            'database' => $this->config['config.database_name'],
-            'username' => $this->config['config.database_user'],
-            'password' => $this->config['config.database_password'],
-            'port' => $this->config['config.database_port'],
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix' => '',
-        );
-        $this->config['database'] = $db;
-        $this->config['database.connections.mysql'] = $default;
-        $this->loadedConfigurations['database'] = true;
+//        $db = array(
+//            'fetch' => \PDO::FETCH_CLASS,
+//            'default' => 'mysql',
+//        );
+//        $default = array(
+//            'driver' => 'mysql',
+//            'host' => $this->config['config.database_host'],
+//            'database' => $this->config['config.database_name'],
+//            'username' => $this->config['config.database_user'],
+//            'password' => $this->config['config.database_password'],
+//            'port' => $this->config['config.database_port'],
+//            'charset' => 'utf8',
+//            'collation' => 'utf8_unicode_ci',
+//            'prefix' => '',
+//        );
+//        $this->config['database'] = $db;
+//        $this->config['database.connections.mysql'] = $default;
+//        $this->loadedConfigurations['database'] = true;
 
         $this->singleton('db', function () {
             $this->loadComponent('database', [

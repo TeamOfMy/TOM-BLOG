@@ -5,7 +5,7 @@
         {% include 'Admin/nav_top.html.twig' %}
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>百度Editor</h2>
+                <h2>文章发布</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">主页</a>
@@ -14,7 +14,7 @@
                         <a>表单</a>
                     </li>
                     <li>
-                        <strong>百度Editor</strong>
+                        <strong>文章发布</strong>
                     </li>
                 </ol>
             </div>
@@ -24,38 +24,91 @@
         </div>
 
         <div class="wrapper wrapper-content">
+            <form method="post" class="form-horizontal" action="{{ U('post_add_data') }}">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5>标题</h5>
+                        <input class="form-control" type="text" name="title">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>内容</h5>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Wyswig Summernote 富文本编辑器</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="form_editors.html#">选项1</a>
-                                    </li>
-                                    <li><a href="form_editors.html#">选项2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="form_editors.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="form_editors.html#">选项1</a>
+                                        </li>
+                                        <li><a href="form_editors.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content no-padding">
+
+                                <textarea name="content" id="editor" type="text/plain"></textarea>
+                            </div>
+                            <div>
+                                <input type="submit" value="发布">
                             </div>
                         </div>
-                        <div class="ibox-content no-padding">
+                    </div>
 
-                            <script id="editor" type="text/plain"></script>
+                    <div class="col-lg-4">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>分类</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="form_basic.html#">选项1</a>
+                                        </li>
+                                        <li><a href="form_basic.html#">选项2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                    <p>欢迎登录本站(⊙o⊙)</p>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">用户名：</label>
+
+                                        <div class="col-lg-8">
+                                            <input type="email" placeholder="用户名" class="form-control"> <span class="help-block m-b-none">请输入您注册时所填的E-mail</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">密码：</label>
+
+                                        <div class="col-lg-8">
+                                            <input type="password" placeholder="密码" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-3 col-lg-8">
+                                            <button class="btn btn-sm btn-white" type="submit">登 录</button>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
         <div class="footer">
             <div class="pull-right">
@@ -75,10 +128,12 @@
 {% block javascript %}
     <!-- Web Ueditor -->
     <script type="text/javascript" charset="utf-8" src="{{ STATIC_PATH }}js/plugins/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_PATH }}js/plugins/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8"
+            src="{{ STATIC_PATH }}js/plugins/ueditor/ueditor.all.min.js"></script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="{{ STATIC_PATH }}js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{{ STATIC_PATH }}js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript">
 
         //实例化编辑器
