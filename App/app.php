@@ -2,14 +2,14 @@
 if(!defined('BASEDIR')){
     exit('File not found');
 }
-// ¼ÓÔØ×Ô¶¯¼ÓÔØÀàÖĞ composer·½Ê½ ²¢×¢²áµ½ÏµÍ³ÖĞ
+// åŠ è½½è‡ªåŠ¨åŠ è½½ç±»ä¸­ composeræ–¹å¼ å¹¶æ³¨å†Œåˆ°ç³»ç»Ÿä¸­
 $loader = include BASEDIR.'/vendor/autoload.php';
 spl_autoload_register(array($loader,'loadClass'));
 
-// ³õÊ¼»¯¿ò¼ÜÈë¿Ú ÈİÆ÷
+// åˆå§‹åŒ–æ¡†æ¶å…¥å£ å®¹å™¨
 $app = new \Core\Application();
 
-// ×¢²á·şÎñµ½¿ò¼ÜÖĞ£¬È«¾Ö¶¼¿ÉÒÔµ÷ÓÃ µ÷ÓÃÊ±ºò $container->make(service)
+// æ³¨å†ŒæœåŠ¡åˆ°æ¡†æ¶ä¸­ï¼Œå…¨å±€éƒ½å¯ä»¥è°ƒç”¨ è°ƒç”¨æ—¶å€™ $container->make(service)
 $app->alias('App\Service\Task\TaskService','taskServer');
 $app->alias('App\Service\Message\MessageService','messageServer');
 $app->alias('App\Service\User\UserService','userServer');
@@ -17,7 +17,7 @@ $app->alias('App\Service\UserGroup\UserGroupService','userGroupServer');
 $app->alias('App\Service\System\SystemService', 'systemServer');
 $app->alias('App\Service\Lottery\LotteryService', 'lotteryServer');
 
-// ¼ÓÔØÏîÄ¿ËùÓĞÂ·ÓÉÅäÖÃ
+// åŠ è½½é¡¹ç›®æ‰€æœ‰è·¯ç”±é…ç½®
 include 'Config/route.php';
 
 return $app;

@@ -9,12 +9,12 @@ class Posts extends \Illuminate\Database\Eloquent\Model
     protected $guarded = ['id'];
 
     /**
-     * ²©¿Í·¢²¼¶ÔÓ¦µÄÓÃ»§ĞÅÏ¢
-     * Ò»¶ÔÒ»
+     * åšå®¢å‘å¸ƒå¯¹åº”çš„ç”¨æˆ·ä¿¡æ¯
+     * ä¸€å¯¹ä¸€
      *
      * <p>
-     * ¹ØÁªÓÃ»§±í
-     * ÔÚ»ñÈ¡Ê±ÓÃ with('postUser') ÓÃÓÚtwig ÖĞ¿ÉÒÔÖ±½Óµ÷ÓÃ
+     * å…³è”ç”¨æˆ·è¡¨
+     * åœ¨è·å–æ—¶ç”¨ with('postUser') ç”¨äºtwig ä¸­å¯ä»¥ç›´æ¥è°ƒç”¨
      * </p>
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -24,12 +24,12 @@ class Posts extends \Illuminate\Database\Eloquent\Model
     }
 
     /**
-     * ²©¿Í·¢²¼¶ÔÓ¦µÄ·ÖÀàĞÅÏ¢
-     * Ò»¶ÔÒ»
+     * åšå®¢å‘å¸ƒå¯¹åº”çš„åˆ†ç±»ä¿¡æ¯
+     * ä¸€å¯¹ä¸€
      *
      * <p>
-     * ¹ØÁª·ÖÀà±í
-     * ÔÚ»ñÈ¡Ê±ÓÃ with('postCate') ÓÃÓÚtwig ÖĞ¿ÉÒÔÖ±½Óµ÷ÓÃ
+     * å…³è”åˆ†ç±»è¡¨
+     * åœ¨è·å–æ—¶ç”¨ with('postCate') ç”¨äºtwig ä¸­å¯ä»¥ç›´æ¥è°ƒç”¨
      * </p>
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

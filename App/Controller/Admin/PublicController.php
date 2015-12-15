@@ -22,15 +22,15 @@ class PublicController extends BaseController
         if (empty($username) || empty($password)) {
             return json_encode(array(
                 'status' => 0,
-                'msg' => 'ÓÃ»§Ãû»òÃÜÂë²»ÄÜÎª¿Õ'
+                'msg' => 'ç”¨æˆ·åæˆ–å¯†ç ä¸èƒ½ä¸ºç©º'
             ), JSON_UNESCAPED_UNICODE);
         }
         $userinfo = Users::where('username',$username)->first();
-        //Èç¹û»ñÈ¡²»µ½ÓÃ»§ĞÅÏ¢£¬·µ»ØÌáÊ¾ĞÅÏ¢
+        //å¦‚æœè·å–ä¸åˆ°ç”¨æˆ·ä¿¡æ¯ï¼Œè¿”å›æç¤ºä¿¡æ¯
         if (!$userinfo || $userinfo['password'] != md5($password)) {
             return array(
                 'status' => 0,
-                'msg' => 'ÓÃ»§Ãû»òÕßÃÜÂë´íÎó£¡'
+                'msg' => 'ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯ï¼'
             );
         }
         $session->set('uid',$userinfo['id']);

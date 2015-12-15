@@ -2,7 +2,7 @@
 if (!defined('BASEDIR')) {
     exit('File not found');
 }
-// ÔÝÊ±Ã»ÓÃ
+// æš‚æ—¶æ²¡ç”¨
 return array(
     'fetch' => \PDO::FETCH_CLASS,
     'default' => 'mysql',
