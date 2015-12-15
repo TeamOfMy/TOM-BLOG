@@ -1,22 +1,31 @@
 <?php
 namespace App\Controller\Admin;
 
+use App\Models\Photos;
 
 class MediaController extends BaseController
 {
 
     public function index()
     {
-        return $this->render('Admin/Medal/index');
-
+        
+        $photoList = Photos::select("id","path")->limit(20)->orderBy("created_at", "desc")->get();
+        
+        $result["photoList"] = $photoList;
+        return $this->render('Admin/Media/index', $result);
     }
-
-    public function medalUpload()
+    
+    /**
+     * 展示上传图列表
+     */
+    public function mediaUpload()
     {
-        return $this->render('Admin/Medal/medal_upload');
-
+        return $this->render('Admin/Media/media_upload');
     }
-
+    
+    /*
+     * 上传方法
+     */
     public function upload()
     {
 // Make sure file is not cached (as it happens for example on iOS devices)
@@ -31,7 +40,8 @@ class MediaController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
             exit; // finish preflight CORS requests here
         }
-
+        
+        //是否是debug模式
         if (!empty($_REQUEST['debug'])) {
             $random = rand(0, intval($_REQUEST['debug']));
             if ($random === 0) {
@@ -67,8 +77,9 @@ class MediaController extends BaseController
         } else {
             $fileName = uniqid("file_");
         }
-        $filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
-        $uploadPath = $uploadDir . DIRECTORY_SEPARATOR . $fileName;
+        
+        $filePath = $targetDir . $fileName;
+        $uploadPath = $uploadDir . $fileName;
 // Chunking might be enabled
         $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
         $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 1;
@@ -78,7 +89,7 @@ class MediaController extends BaseController
                 die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open temp directory."}, "id" : "id"}');
             }
             while (($file = readdir($dir)) !== false) {
-                $tmpfilePath = $targetDir . DIRECTORY_SEPARATOR . $file;
+                $tmpfilePath = $targetDir . $file;
                 // If temp file is current file proceed to the next
                 if ($tmpfilePath == "{$filePath}_{$chunk}.part" || $tmpfilePath == "{$filePath}_{$chunk}.parttmp") {
                     continue;
@@ -141,7 +152,15 @@ class MediaController extends BaseController
             @fclose($out);
         }
 // Return Success JSON-RPC response
-        die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+        //die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+        //var_dump($_FILES);
+        $insertResult = Photos::create(['path'=>"/".$uploadPath, 'name'=>$_FILES['file']['name']]);
+        
+        // if(!$insertResult){
+        //     return new JsonResponse(array('status' => 101, 'msg' => '上传失败'));
+        // }
+        
+        // return new JsonResponse(array('status' => 0, 'msg' => '上传成功'));
     }
 
 }
