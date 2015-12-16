@@ -158,7 +158,8 @@ class MediaController extends BaseController
         $image = getimagesize($imagePath);
         $imageWidth = $image[0];
         $imageHeight = $image[1];
-    
+        
+        var_dump($_FILES);
         $insertResult = Photos::create(['path'=>"/".$uploadPath, 'name'=>$_FILES['file']['name'], 'height'=>$imageHeight, 'width'=>$imageWidth]);
 
         if(!$insertResult){
