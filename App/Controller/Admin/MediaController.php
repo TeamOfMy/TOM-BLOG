@@ -136,6 +136,7 @@ class MediaController extends BaseController
             if (!$out = @fopen($uploadPath, "wb")) {
                 die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}');
             }
+            
             if (flock($out, LOCK_EX)) {
                 for ($index = 0; $index < $chunks; $index++) {
                     if (!$in = @fopen("{$filePath}_{$index}.part", "rb")) {
@@ -153,14 +154,18 @@ class MediaController extends BaseController
         }
 // Return Success JSON-RPC response
         //die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
-        //var_dump($_FILES);
-        $insertResult = Photos::create(['path'=>"/".$uploadPath, 'name'=>$_FILES['file']['name']]);
+        $imagePath = $uploadPath;
+        $image = getimagesize($imagePath);
+        $imageWidth = $image[0];
+        $imageHeight = $image[1];
+    
+        $insertResult = Photos::create(['path'=>"/".$uploadPath, 'name'=>$_FILES['file']['name'], 'height'=>$imageHeight, 'width'=>$imageWidth]);
+
+        if(!$insertResult){
+            return json_encode(array('status' => 101, 'msg' => '上传失败'));
+        }
         
-        // if(!$insertResult){
-        //     return new JsonResponse(array('status' => 101, 'msg' => '上传失败'));
-        // }
-        
-        // return new JsonResponse(array('status' => 0, 'msg' => '上传成功'));
+        return json_encode(array('status' => 0, 'msg' => '上传成功'));
     }
 
 }

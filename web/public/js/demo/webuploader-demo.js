@@ -341,7 +341,14 @@ jQuery(function() {
             case 'finish':
                 stats = uploader.getStats();
                 if ( stats.successNum ) {
-                    alert( '上传成功' );
+                    // alert( '上传成功' );
+                    var confirmation = confirm("上传成功！是否继续上传？");
+                    if (confirmation == true) {
+                        location.reload();
+                    } else {
+                        return;
+                    }
+                    
                 } else {
                     // 没有成功的图片，重设
                     state = 'done';
@@ -352,7 +359,8 @@ jQuery(function() {
 
         updateStatus();
     }
-
+    
+    //正在加载
     uploader.onUploadProgress = function( file, percentage ) {
         var $li = $('#'+file.id),
             $percent = $li.find('.progress span');
@@ -361,7 +369,8 @@ jQuery(function() {
         percentages[ file.id ][ 1 ] = percentage;
         updateTotalProgress();
     };
-
+    
+    //文件处于准备上传中
     uploader.onFileQueued = function( file ) {
         fileCount++;
         fileSize += file.size;
@@ -375,7 +384,8 @@ jQuery(function() {
         setState( 'ready' );
         updateTotalProgress();
     };
-
+    
+    //将图片去除队列
     uploader.onFileDequeued = function( file ) {
         fileCount--;
         fileSize -= file.size;
